@@ -3,7 +3,7 @@ import openai
 import sqlite3
 import os
 from aiogram import Bot, Dispatcher, types
-from aiogram.types import ParseMode
+from aiogram import executor
 from aiogram.utils import markups
 from datetime import datetime
 from gtts import gTTS
