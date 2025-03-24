@@ -3,7 +3,8 @@ import openai
 import sqlite3
 import os
 from aiogram import Bot, Dispatcher, types
-from aiogram import Executor
+from aiogram.types import ParseMode
+from aiogram.utils import markups
 from datetime import datetime
 from gtts import gTTS
 
@@ -67,7 +68,8 @@ async def handle_voice_command(message: types.Message):
 
 # Запуск бота
 if name == "__main__":
-    Executor(dp).start_polling()
+    from aiogram import executor  # Для aiogram 3.x потрібно додавати це вручну
+    executor.start_polling(dp, skip_updates=True)
 
 # Таблиця для промокодів
 cursor.execute("""CREATE TABLE IF NOT EXISTS promo_codes (code TEXT PRIMARY KEY, reward TEXT)""")
