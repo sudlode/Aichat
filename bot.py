@@ -3,12 +3,14 @@ import openai
 import sqlite3
 import os
 from aiogram import Bot, Dispatcher, types
-from aiogram.utils import executor
+from aiogram import Executor
 from datetime import datetime
 from gtts import gTTS
-from config import BOT_TOKEN, OPENAI_API_KEY
 
 # Токени
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
 openai.api_key = OPENAI_API_KEY
 
 # Логування
@@ -63,6 +65,10 @@ async def handle_voice_command(message: types.Message):
         await message.reply("❌ Сталася помилка при генерації голосового повідомлення.")
         logging.error(f"Помилка генерації голосу: {e}")
 
+# Запуск бота
+if name == "__main__":
+    Executor(dp).start_polling()
+
 # Таблиця для промокодів
 cursor.execute("""CREATE TABLE IF NOT EXISTS promo_codes (code TEXT PRIMARY KEY, reward TEXT)""")
 conn.commit()
@@ -99,7 +105,3 @@ async def handle_promo(message: types.Message):
         await message.reply(f"🎉 Промокод {code} активовано! {reward}")
     else:
         await message.reply("❌ Невірний або використаний промокод!")
-
-# Запуск бота
-if name == "__main__":
-    executor.start_polling(dp, skip_updates=True)
