@@ -2,3 +2,5 @@ aiogram>=3.0
 python-dotenv
 gTTS
 openai
+gunicorn
+aiohttp
