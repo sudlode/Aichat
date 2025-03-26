@@ -10,7 +10,7 @@ import openai
 from dotenv import load_dotenv
 
 # Завантаження змінних середовища
-BOT_TOKEN = "7738138408:AAEMrBTn7b-G4I483n_f2b7ceKhl2eSRkdQ"  # Тимчасово! Потім поверніть os.getenv()
+BOT_TOKEN = "7738138408:"  # Тимчасово! Потім поверніть os.getenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 ADMINS = [1119767022]  # ЗАМІНІТЬ НА СВІЙ TELEGRAM ID
 
